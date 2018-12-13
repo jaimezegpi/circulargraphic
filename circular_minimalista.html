@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Experimento HTML</title>
+	<link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+</head>
+<body style="background-image:URL('https://image.freepik.com/vector-gratis/fondo-metalico-punteado_1053-102.jpg') ">
+	<div id="grafico_circular" style="width: 300px; height: 200px;"></div>
+
+	<script type="text/javascript">
+
+		window.cg_repeater=[''];
+		window.cg_repeater_value=[]
+		function circularGraphics( id,percent, line_color,line_width_px, internal_circle_color, font_name, font_color, font_size ){
+				var contenedor = document.getElementById(id), contenedor_ancho = contenedor.offsetWidth, contenedor_alto = contenedor.offsetHeight, element = document.createElement("canvas");var canvas_att = document.createAttribute("class"); canvas_att.value = "circular_graphics"; element.setAttributeNode(canvas_att);var canvas_ancho = document.createAttribute("width"); canvas_ancho.value = contenedor_ancho+"px";	element.setAttributeNode(canvas_ancho);	var canvas_alto = document.createAttribute("height"); canvas_alto.value = contenedor_alto+"px"; element.setAttributeNode(canvas_alto);var canvas_center_w = contenedor_ancho/2, canvas_center_h = contenedor_alto/2;if (canvas_center_w>canvas_center_h){ var canvas_radio = canvas_center_h-10; }else{ var canvas_radio = canvas_center_w-10; }var canvas_radians = ( ( ( percent * 360 ) / 100 ) * Math.PI / 180 ) + ( 1.5*Math.PI );	var ctx = element.getContext("2d");	ctx.beginPath();ctx.arc(canvas_center_w,canvas_center_h,canvas_radio,1.5*Math.PI, canvas_radians );	ctx.lineCap="round"; ctx.strokeStyle = line_color;	ctx.lineWidth=line_width_px;ctx.stroke();ctx.beginPath();ctx.lineWidth=0.1;ctx.arc(canvas_center_w,canvas_center_h,canvas_radio-25,0, 2*Math.PI ); ctx.fillStyle = internal_circle_color; ctx.fill();ctx.stroke();ctx.beginPath();ctx.fillStyle = font_color;ctx.lineWidth=1;ctx.font=font_size+"px "+font_name; ctx.textAlign="center";	ctx.fillText("%",canvas_center_w,canvas_center_h-(font_size/2) ); ctx.fillText(percent,canvas_center_w,canvas_center_h+(font_size/2) ); document.getElementById(id).innerHTML=""; document.getElementById(id).appendChild(element);}
+
+		function circularWalker( id,percent, line_color,line_width_px, internal_circle_color, font_name, font_color, font_size, speed ){
+			window.cg_repeater[id] = setInterval(function(){ if (!window.cg_repeater_value[id]){ window.cg_repeater_value[id] = 0; } if (window.cg_repeater_value[id]<percent){	window.cg_repeater_value[id] = window.cg_repeater_value[id]+1;	}else{	window.cg_repeater_value[id] = window.cg_repeater_value[id]-1;	} circularGraphics( id,window.cg_repeater_value[id], line_color,line_width_px, internal_circle_color, font_name, font_color, font_size );if (window.cg_repeater_value[id] == percent || window.cg_repeater_value[id]>99 ){	clearInterval( window.cg_repeater[id] ); } },speed);
+		}
+
+		/*
+		id: Object Id
+		percent: Percent in numbers ex: 80 <-- =  80%
+		line_color: Percent indicador color
+		line_width_px: ancho linea indiocadora de percent en px
+		internal_circle_color: Color de relleno del fondo del texto
+		font_color: Color de la fuente
+		font_size: tamaño de la fuente
+		speed: 0 max speed, 255 sloooow
+		*/
+		
+		circularWalker('grafico_circular',75,'#fff',1,'rgba(0, 0, 0, 0.5)','Rajdhani','#ffffff','30','10');
+
+
+
+	</script>
+
+</body>
+</html>
