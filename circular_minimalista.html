@@ -9,6 +9,8 @@
 
 	<script type="text/javascript">
 
+function circularGraphics(e,t,r,a,i,n,l,c){var d=document.getElementById(e);if(!d)return!1;var u=d.offsetWidth,o=d.offsetHeight,w=document.createElement("canvas"),_=document.createAttribute("class");_.value="circular_graphics",w.setAttributeNode(_);var g=document.createAttribute("width");g.value=u+"px",w.setAttributeNode(g);var v=document.createAttribute("height");v.value=o+"px",w.setAttributeNode(v);var p=u/2,h=o/2;p>h?(s=h)<1&&(s=1):(s=p)<1&&(s=1);var s,f=360*t/100*Math.PI/180+1.5*Math.PI;(s=s-25)<0&&(s=0);var m=w.getContext("2d");m.beginPath(),m.arc(p,h,s,1.5*Math.PI,f),m.lineCap="round",m.strokeStyle=r,m.lineWidth=a,m.stroke(),m.beginPath(),m.lineWidth=.1,m.arc(p,h,s,0,2*Math.PI),m.fillStyle=i,m.fill(),m.stroke(),m.beginPath(),m.fillStyle=l,m.lineWidth=1,m.font=c+"px "+n,m.textAlign="center",m.fillText("%",p,h-c/2),m.fillText(t,p,h+c/2),document.getElementById(e).innerHTML="",document.getElementById(e).appendChild(w)}function circularWalker(e,t,r,a,i,n,l,c,d){window.cg_repeater[e]=setInterval(function(){window.cg_repeater_value[e]||(window.cg_repeater_value[e]=0),window.cg_repeater_value[e]<t?window.cg_repeater_value[e]=window.cg_repeater_value[e]+1:window.cg_repeater_value[e]=window.cg_repeater_value[e]-1,circularGraphics(e,window.cg_repeater_value[e],r,a,i,n,l,c),(window.cg_repeater_value[e]==t||window.cg_repeater_value[e]>99)&&clearInterval(window.cg_repeater[e])},d)}window.cg_repeater=[""],window.cg_repeater_value=[];
+		/*
 		window.cg_repeater=[''];
 		window.cg_repeater_value=[]
 		function circularGraphics( id,percent, line_color,line_width_px, internal_circle_color, font_name, font_color, font_size ){
@@ -29,16 +31,13 @@
 			var canvas_center_w = contenedor_ancho / 2,
 			    canvas_center_h = contenedor_alto / 2;
 			if (canvas_center_w > canvas_center_h) {
-			    //var canvas_radio = canvas_center_h - 10;
 			    var canvas_radio = canvas_center_h;
 			    if (canvas_radio<1){ canvas_radio = 1;}
 			} else {
-			    //var canvas_radio = canvas_center_w - 10;
 			    var canvas_radio = canvas_center_w;
 			    if (canvas_radio<1){ canvas_radio = 1;}
 			}
 			var canvas_radians = (((percent * 360) / 100) * Math.PI / 180) + (1.5 * Math.PI);
-			//if (canvas_radians>1){ canvas_radians = 1; }
 			var canvas_radio = canvas_radio - 25;
 			if (canvas_radio<0){ canvas_radio = 0; }
 			var ctx = element.getContext("2d");
@@ -81,7 +80,7 @@
 				    }
 				}, speed);
 		}
-
+		*/
 		/*
 		id: Object Id
 		percent: Percent in numbers ex: 80 <-- =  80%
@@ -92,7 +91,7 @@
 		font_size: tamaño de la fuente
 		speed: 0 max speed, 255 sloooow
 		*/
-		circularWalker('grafico_circular',41,'#fff',10,'rgba(0, 0, 0, 0.5)','Rajdhani','#ffffff','10','10');
+		circularWalker('grafico_circular',41,'#fff',3,'rgba(0, 0, 0, 0.5)','Rajdhani','#ffffff','10','100');
 
 	</script>
 </body>
