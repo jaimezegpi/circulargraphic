@@ -4,7 +4,7 @@
 	<title>Experimento HTML</title>
 	<link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
 </head>
-<body style="background-image:URL('https://image.freepik.com/vector-gratis/fondo-metalico-punteado_1053-102.jpg') ">
+<body style="background-color:#1c1c1c">
 	<div id="grafico_circular" style="width: 100px; height: 100px;"></div>
 
 	<script type="text/javascript">
@@ -12,8 +12,9 @@
 		window.cg_repeater=[''];
 		window.cg_repeater_value=[]
 		function circularGraphics( id,percent, line_color,line_width_px, internal_circle_color, font_name, font_color, font_size ){
-			var contenedor = document.getElementById(id),
-			    contenedor_ancho = contenedor.offsetWidth,
+			var contenedor = document.getElementById(id);
+			if ( !contenedor ){ return false; }
+			var contenedor_ancho = contenedor.offsetWidth,
 			    contenedor_alto = contenedor.offsetHeight,
 			    element = document.createElement("canvas");
 			var canvas_att = document.createAttribute("class");
@@ -91,12 +92,8 @@
 		font_size: tamaño de la fuente
 		speed: 0 max speed, 255 sloooow
 		*/
-		
 		circularWalker('grafico_circular',41,'#fff',10,'rgba(0, 0, 0, 0.5)','Rajdhani','#ffffff','10','10');
 
-
-
 	</script>
-
 </body>
 </html>
