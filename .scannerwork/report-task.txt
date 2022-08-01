@@ -1,0 +1,6 @@
+projectKey=circularGraphics
+serverUrl=http://localhost:9000
+serverVersion=9.5.0.56709
+dashboardUrl=http://localhost:9000/dashboard?id=circularGraphics
+ceTaskId=AYJaUP8JLVx51V85AZ2s
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJaUP8JLVx51V85AZ2s
